@@ -22,8 +22,6 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println(string(dump))
 
-	ping := Ping{http.StatusOK, "root"}
-	res, _ := json.Marshal(ping)
 	w.Header().Set("Content-Type", "application/json")
 
 	// これを返せば、GET はできる、POST もできる
@@ -38,15 +36,23 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	// これを追加すると Cookie が取得できる
 	w.Header().Set("Access-Control-Allow-Credentials", "true")
 
+
+	var result string
+
 	// Cookie
 	cookie, _ := r.Cookie("hoge")
 	if cookie != nil {
 		v := cookie.Value
 		fmt.Println(v)
+		result = v
 	} else {
-		fmt.Println("Cookie が取得できなかった")
+		errStr := "Cookie が取得できなかった"
+		fmt.Println(errStr)
+		result = errStr
 	}
 
+	ping := Ping{http.StatusOK, result}
+	res, _ := json.Marshal(ping)
 	w.Write(res)
 }
 
