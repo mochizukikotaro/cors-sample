@@ -3,7 +3,9 @@
 CORS sample code.
 
 ```bash
-$ cd ~/cors-sample
+$ cd ~/GOPATH/your_path
+$ git clone git@github.com:mochizukikotaro/cors-sample.git && cd $(basename $_ .git)
+
 $ realize start
 ```
 
@@ -13,7 +15,7 @@ $ curl http://localhost:8888
 ```
 
 ```bash
-$ cd ~/cors-sample/php
+$ cd ~your_path/cors-sample/php
 $ php -S localhost:9999
 # => http://localhost:9999
 ```
