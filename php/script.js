@@ -1,44 +1,42 @@
-console.log("Hello script");
-
-var xhr = new XMLHttpRequest();
-var url = 'http://localhost:18888/';
+var xhr = new XMLHttpRequest()
+var url = 'http://localhost:8888/'
 
 const handler = () => {
-  console.log(xhr.responseText);
+  console.log(xhr.responseText)
 }
 
 const getRequest = () => {
   if(xhr) {
-    xhr.open('GET', url);
-    xhr.onreadystatechange = handler;
-    xhr.send();
+    xhr.open('GET', url)
+    xhr.onreadystatechange = handler
+    xhr.send()
   }
 }
 
 const postRequest = () => {
   if(xhr) {
-    xhr.open('POST', url);
-    xhr.onreadystatechange = handler;
-    xhr.send();
+    xhr.open('POST', url)
+    xhr.onreadystatechange = handler
+    xhr.send()
   }
 }
 
 const postJsonRequest = () => {
   if(xhr) {
-    xhr.open('POST', url);
+    xhr.open('POST', url)
     xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.setRequestHeader('X-CORS-Sample', 'foo')
-    xhr.onreadystatechange = handler;
-    xhr.send();
+    xhr.onreadystatechange = handler
+    xhr.send()
   }
 }
 
 const getCookieRequest = () => {
   if(xhr) {
-    xhr.open('GET', url);
-    xhr.withCredentials = true;
-    xhr.onreadystatechange = handler;
-    xhr.send();
+    xhr.open('GET', url)
+    xhr.withCredentials = true
+    xhr.onreadystatechange = handler
+    xhr.send()
   }
 }
 
