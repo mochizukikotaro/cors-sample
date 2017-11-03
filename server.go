@@ -40,7 +40,18 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Headers",
 		"Content-Type, X-CORS-Sample")
 
-	// さらに、カスタムヘッダを追加する
+
+	// Cookie
+	// 1
+	cookie, err := r.Cookie("hoge")
+
+	if err != nil {
+		fmt.Println("hoge が取得できなかった")
+		fmt.Println("Cookie", err)
+	}
+	// 2
+	v := cookie.Value
+	fmt.Println(v)
 
 	w.Write(res)
 
