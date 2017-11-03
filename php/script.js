@@ -25,7 +25,7 @@ const postJsonRequest = () => {
   if(xhr) {
     xhr.open('POST', url)
     xhr.setRequestHeader('Content-Type', 'application/json')
-    xhr.setRequestHeader('X-CORS-Sample', 'foo')
+    xhr.setRequestHeader('X-Hoge', 'foo')
     xhr.onreadystatechange = handler
     xhr.send()
   }

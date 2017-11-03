@@ -27,15 +27,16 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	// これを返せば、GET はできる、POST もできる
+	//w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	// Cookie を取得したい場合はワイルドカードは使えない
 	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:9999")
 
 	// これを追加すると POST with application/json が可能となる
-	w.Header().Set("Access-Control-Allow-Methods","POST, GET, OPTIONS")
-	w.Header().Set("Access-Control-Allow-Headers","Content-Type, X-CORS-Sample")
+	w.Header().Set("Access-Control-Allow-Headers","Content-Type, X-Hoge")
 
 	// これを追加すると Cookie が取得できる
 	w.Header().Set("Access-Control-Allow-Credentials", "true")
-
 
 	// Cookie
 	cookie, _ := r.Cookie("hoge")
