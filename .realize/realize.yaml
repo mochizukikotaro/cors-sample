@@ -1,0 +1,23 @@
+settings:
+  legacy:
+    force: false
+    interval: 100ms
+server:
+  status: false
+  open: false
+  host: localhost
+  port: 5001
+schema:
+- name: cors-sample
+  path: /Users/mochizuki/Developments/go/src/github.com/mochizukikotaro/cors-sample
+  commands:
+    run: true
+  watcher:
+    paths:
+    - /
+    extensions:
+    - go
+    ignored_paths:
+    - .git
+    - .realize
+    - vendor
