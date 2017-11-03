@@ -26,37 +26,33 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	res, _ := json.Marshal(ping)
 	w.Header().Set("Content-Type", "application/json")
 
-	// ひとつめの学び
 	// これを返せば、GET はできる、POST もできる
 	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:9999")
 
 	// これを追加すると POST with application/json が可能となる
 	w.Header().Set("Access-Control-Allow-Methods","POST, GET, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers","Content-Type, X-CORS-Sample")
+
+	// これを追加すると Cookie が取得できる
 	w.Header().Set("Access-Control-Allow-Credentials", "true")
-	w.Header().Set("Access-Control-Allow-Headers",
-		"Content-Type, X-CORS-Sample")
 
 
 	// Cookie
-	// 1
-	cookie, err := r.Cookie("hoge")
-
-	if err != nil {
-		fmt.Println("hoge が取得できなかった")
-		fmt.Println("Cookie", err)
+	cookie, _ := r.Cookie("hoge")
+	if cookie != nil {
+		v := cookie.Value
+		fmt.Println(v)
+	} else {
+		fmt.Println("Cookie が取得できなかった")
 	}
-	// 2
-	v := cookie.Value
-	fmt.Println(v)
 
 	w.Write(res)
-
 }
 
 
 func main() {
 	var httpServer http.Server
 	http.HandleFunc("/", rootHandler)
-	httpServer.Addr = ":18888"
+	httpServer.Addr = ":8888"
 	log.Println(httpServer.ListenAndServe())
 }
